@@ -26,7 +26,13 @@ def main():
         screen.fill("black")
         pygame.display.flip()
         dt = clock.tick(60) / 1000
+    
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    
+    player = Player(x, y)
 
+    player.draw(screen)
 
 if __name__ == "__main__":
     main()
