@@ -1,6 +1,6 @@
 #this allows us to use code form the open-source pygame library throughout this file
 import pygame
-
+from player import *
 from constants import *
 
 def main():
@@ -26,10 +26,9 @@ def main():
         screen.fill("black")
         pygame.display.flip()
         dt = clock.tick(60) / 1000
-    
+
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
-    
     player = Player(x, y)
 
     player.draw(screen)
