@@ -22,36 +22,36 @@ class Player(CircleShape):
         pygame.draw.polygon(screen, "white", self.triangle(), 2)
 
     def rotate(self, dt):
+        print(f"dt {dt}")
         self.rotation = self.rotation + PLAYER_TURN_SPEED * dt
+        print(f"self.rotation {self.rotation}")
 
     def update(self, dt):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a]:
-            print("a")
             self.rotate(-dt)
         if keys[pygame.K_d]:
-            print("d")
             self.rotate(dt)
         if keys[pygame.K_w]:
-            print("w")
             self.move(dt)
         if keys[pygame.K_s]:
-            print("s")
             self.move(-dt)
-        #if keys[pygame.K_SPACE]:
-            #print("space")
-            #self.shoot()
 
     def move(self, dt):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         self.position += forward * PLAYER_SPEED * dt
     
     def shoot(self):
-        print("pop")
         shot = Shot(self.position, SHOT_RADIUS)
+        #print(self.rotation)
         shot_velocity = pygame.Vector2(0,1)
+        #print(f"shot_velocity {shot_velocity}")
         shot_velocity.rotate(self.rotation)
+        #print(f"shot_velocity {shot_velocity}")
         shot_velocity = shot_velocity * PLAYER_SHOOT_SPEED
+        #print(f"shot_velocity {shot_velocity}")
+        
         shot.velocity = shot_velocity
+        #print(f"shot_velocity {shot_velocity}")
         self.shots.add(shot)
         

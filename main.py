@@ -27,23 +27,23 @@ def main():
     player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, shots)
     asteroid_field = AsteroidField()
     while(True):
-        updatable.update(dt)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                player1.shoot()
         for ast in asteroids:
             if ast.hasColided(player1):
                 print("Game over!")
                 return
+        updatable.update(dt)
+        for s in shots:
+            s.update(dt)
         screen.fill("black")
         for d in drawable:
             d.draw(screen)
         pygame.display.flip()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return
-            if event.type == pygame.KEYDOWN and pygame.K_SPACE:
-                player1.shoot()
-                print("KEYDOWN")
         delta = clock.tick(60)
         dt = delta / 1000
-
 if __name__ == "__main__":
     main()
