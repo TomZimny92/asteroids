@@ -30,12 +30,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and player1.cooldown <= 0:
                 player1.shoot()
-        for ast in asteroids:
+        for ast in asteroids:            
             if ast.hasColided(player1):
                 print("Game over!")
                 return
+            for shot in shots:
+                if shot.hasColided(ast):
+                    shot.kill()
+                    ast.kill()
         updatable.update(dt)
         for s in shots:
             s.update(dt)
