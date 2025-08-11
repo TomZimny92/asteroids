@@ -32,7 +32,7 @@ def main():
                 return
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and player1.cooldown <= 0:
                 player1.shoot()
-        for ast in asteroids:            
+        for ast in asteroids:
             if ast.hasColided(player1):
                 print("Game over!")
                 return
