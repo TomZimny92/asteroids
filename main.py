@@ -39,7 +39,7 @@ def main():
             for shot in shots:
                 if shot.hasColided(ast):
                     shot.kill()
-                    ast.kill()
+                    ast.split()
         updatable.update(dt)
         for s in shots:
             s.update(dt)

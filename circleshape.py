@@ -1,4 +1,5 @@
 import pygame
+import math
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -21,9 +22,13 @@ class CircleShape(pygame.sprite.Sprite):
         pass
 
     def hasColided(self, obj):
-        distance = pygame.math.Vector2.distance_to(self.position, obj.position)
-        r1 = self.radius
-        r2 = obj.radius
-        if (distance <= r1 + r1):
-            return True
-        return False 
+        dx = self.position.x - obj.position.x
+        dy = self.position.y - obj.position.y
+        distance = math.hypot(dx, dy)
+        return distance < (self.radius + obj.radius)
+        #distance = pygame.math.Vector2.distance_to(self.position, obj.position)
+        #r1 = self.radius
+        #r2 = obj.radius
+        #if (distance <= r1 + r1):
+        #    return True
+        #return False 
